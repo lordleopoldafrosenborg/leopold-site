@@ -315,12 +315,16 @@ body.nav-open {
   width: 100%;
   max-width: min(1180px, var(--max));
   margin: 0 auto;
+  /* Kolonner følger galleriets faktiske bredde (ikke kun viewport), så preview og live matcher. */
+  container-type: inline-size;
+  container-name: gallery;
 }
 
 .gallery__reel {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(10px, 1.6vw, 18px);
+  /* Fast gap undgår forskelle mellem preview og browser pga. vw/subpixel. */
+  gap: 12px;
   width: 100%;
 }
 
@@ -328,6 +332,7 @@ body.nav-open {
   margin: 0;
   position: relative;
   min-width: 0;
+  min-height: 0;
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -345,17 +350,21 @@ body.nav-open {
   transform: translateY(0);
 }
 
+/* Absolut position: cellehøjde styres kun af aspect-ratio — ingen CLS ved billedload. */
 .gallery__card img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
+  max-height: none;
   display: block;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.002);
   transition: transform 720ms var(--ease);
 }
 
-/* Røde Kors «mod til at handle» — lidt tættere beskæring */
+/* Røde Kors «mod til at handle» — tættere beskæring som før */
 .gallery__card--zoom-in img {
   transform: scale(1.281);
   transform-origin: center 42%;
@@ -372,9 +381,22 @@ body.nav-open {
   }
 }
 
+/* Ældre browsere uden container queries: viewport som før. */
 @media (min-width: 700px) {
   .gallery__reel {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@supports (container-type: inline-size) {
+  .gallery__reel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @container gallery (min-width: 700px) {
+    .gallery__reel {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 }
 
