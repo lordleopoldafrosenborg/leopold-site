@@ -340,13 +340,6 @@ body.nav-open {
   transition: opacity 900ms var(--ease), transform 900ms var(--ease);
 }
 
-.gallery__card--accent {
-  border-color: rgba(201, 160, 106, 0.45);
-  box-shadow:
-    0 0 0 1px rgba(201, 160, 106, 0.12),
-    0 22px 48px rgba(0, 0, 0, 0.42);
-}
-
 .gallery__card.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -362,9 +355,20 @@ body.nav-open {
   transition: transform 720ms var(--ease);
 }
 
+/* Røde Kors «mod til at handle» — lidt tættere beskæring */
+.gallery__card--zoom-in img {
+  transform: scale(1.281);
+  transform-origin: center 42%;
+  object-position: center 38%;
+}
+
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .gallery__card:hover img {
-    transform: scale(1.03);
+    transform: scale(1.0815);
+  }
+
+  .gallery__card--zoom-in:hover img {
+    transform: scale(1.344);
   }
 }
 
