@@ -361,14 +361,15 @@ body.nav-open {
   display: block;
   object-fit: cover;
   object-position: center center;
+  transform: scale(1.002);
   transition: transform 720ms var(--ease);
 }
 
-/* Røde Kors «mod til at handle» — tættere beskæring som før */
+/* Røde Kors «mod til at handle» — tæt crop; origin/position lavt så alle tre med i bunden, ikke i sorte top-bar. */
 .gallery__card--zoom-in img {
   transform: scale(1.281);
-  transform-origin: center 42%;
-  object-position: center 38%;
+  transform-origin: center 52%;
+  object-position: center 54%;
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -381,10 +382,10 @@ body.nav-open {
   }
 }
 
-/* Ældre browsere uden container queries: viewport som før. */
-@media (min-width: 700px) {
+/* Desktop: 3 kolonner. Mobil: 2 (default ovenfor). */
+@media (min-width: 640px) {
   .gallery__reel {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -393,9 +394,9 @@ body.nav-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @container gallery (min-width: 700px) {
+  @container gallery (min-width: 640px) {
     .gallery__reel {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 }
