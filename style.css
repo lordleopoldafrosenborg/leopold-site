@@ -382,10 +382,19 @@ body.nav-open {
   }
 }
 
+/* Mobil (2 kolonner): skjul nr. 7 så gitteret bliver lige (8 billeder = 4 rækker). */
+.gallery__card--hide-2col {
+  display: none;
+}
+
 /* Mobil: 2 kolonner (default). Desktop: præcis 3 — styres af galleriets bredde, ikke viewport alene. */
 @container gallery (min-width: 520px) {
   .gallery__reel {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery__card--hide-2col {
+    display: block;
   }
 }
 
@@ -394,6 +403,10 @@ body.nav-open {
   @media (min-width: 768px) {
     .gallery__reel {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .gallery__card--hide-2col {
+      display: block;
     }
   }
 }
