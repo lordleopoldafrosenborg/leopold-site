@@ -391,6 +391,8 @@ body.nav-open {
 @container gallery (min-width: 520px) {
   .gallery__reel {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 90%;
+    margin-inline: auto;
   }
 
   .gallery__card--hide-2col {
@@ -403,6 +405,8 @@ body.nav-open {
   @media (min-width: 768px) {
     .gallery__reel {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: 90%;
+      margin-inline: auto;
     }
 
     .gallery__card--hide-2col {
