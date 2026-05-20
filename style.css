@@ -382,19 +382,16 @@ body.nav-open {
   }
 }
 
-/* Desktop: 3 kolonner. Mobil: 2 (default ovenfor). */
-@media (min-width: 640px) {
+/* Mobil: 2 kolonner (default). Desktop: præcis 3 — styres af galleriets bredde, ikke viewport alene. */
+@container gallery (min-width: 520px) {
   .gallery__reel {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@supports (container-type: inline-size) {
-  .gallery__reel {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @container gallery (min-width: 640px) {
+/* Browsere uden container queries: 3 kolonner fra tablet/desktop-viewport. */
+@supports not (container-type: inline-size) {
+  @media (min-width: 768px) {
     .gallery__reel {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
