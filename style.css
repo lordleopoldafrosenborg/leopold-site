@@ -630,7 +630,7 @@ body.nav-open {
   }
 }
 
-/* Forside — kort reel (Vimeo); 16:9 + mørk baggrund så der ikke opstår hvide bjælker */
+/* Forside — kort reel (Vimeo); ingen afrunding/kant der giver hvide “hår” i siderne (Safari m.m.) */
 .home-reel {
   border-top: 1px solid rgba(249, 249, 249, 0.08);
   background: var(--bg-deep);
@@ -651,27 +651,33 @@ body.nav-open {
   margin: 0 auto;
   aspect-ratio: 16 / 9;
   background: #000;
-  border-radius: 2px;
-  border: 1px solid rgba(249, 249, 249, 0.07);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+  border-radius: 0;
+  border: 0;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
   overflow: hidden;
+  isolation: isolate;
 }
 
 .home-reel__embed {
   position: absolute;
   inset: 0;
   background: #000;
+  overflow: hidden;
 }
 
 .home-reel__embed iframe {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: calc(100% + 3px);
+  max-width: none;
   height: 100%;
+  margin: 0;
   border: 0;
   background: #000;
   display: block;
+  transform: translateX(-50%);
+  transform-origin: center top;
 }
 
 /* Page shell */
