@@ -680,6 +680,30 @@ body.nav-open {
   transform-origin: center top;
 }
 
+/* Arbejde: reel under stemme-video — samme kolonne som work-voice, ingen ekstra side-padding */
+.page--work .home-reel--work {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: clamp(20px, 3.5vw, 40px);
+  margin-top: clamp(8px, 2vw, 16px);
+}
+
+/* Undgå dobbelt “luft”: forsiden bruger stor bund-padding på .home-reel; her styrer .page afstanden til footeren */
+.page.page--work:has(> .home-reel--work:last-child) {
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+.page--work .home-reel--work .home-reel__inner {
+  max-width: 36rem;
+  margin-inline: 0;
+}
+
+.page--work .home-reel--work .home-reel__player {
+  max-width: 100%;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
 /* Page shell */
 /* Arbejde — samme dybe baggrund som forsiden (hero + galleri) */
 .body--work-page {
