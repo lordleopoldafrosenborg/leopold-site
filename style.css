@@ -237,7 +237,7 @@ body.nav-open {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: clamp(100px, 14vh, 140px) var(--page-pad) clamp(64px, 10vh, 96px);
+  padding: clamp(100px, 14vh, 140px) var(--page-pad) clamp(72px, 14vh, 120px);
   width: 100%;
   max-width: 100%;
 }
@@ -302,6 +302,63 @@ body.nav-open {
   opacity: 1;
   background: rgba(249, 249, 249, 0.12);
   border-color: rgba(249, 249, 249, 0.45);
+}
+
+/* Diskret hint: pil ned mod stillfotos (skjules efter scroll, se main.js) */
+.hero__scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(1.75rem, 4vh, 2.5rem);
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: rgba(249, 249, 249, 0.52);
+  transition: color 480ms var(--ease), opacity 520ms var(--ease);
+}
+
+.hero__scroll-hint:hover,
+.hero__scroll-hint:focus-visible {
+  color: rgba(249, 249, 249, 0.88);
+}
+
+.hero__scroll-hint:focus-visible {
+  outline: 1px solid rgba(249, 249, 249, 0.35);
+  outline-offset: 4px;
+}
+
+.hero__scroll-hint__chev {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 11px solid currentColor;
+  opacity: 0.9;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__scroll-hint__chev {
+    animation: hero-scroll-hint-chev 3.6s cubic-bezier(0.45, 0.05, 0.25, 1) infinite;
+  }
+}
+
+@keyframes hero-scroll-hint-chev {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 9px, 0);
+  }
+}
+
+body.hero-scrolled .hero__scroll-hint {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Gallery — stille redaktionelt still-grid (matcher mørk, rolig site-vibe) */

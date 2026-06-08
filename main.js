@@ -155,4 +155,26 @@
     }
     window.addEventListener("resize", scheduleFitWorkTitles, { passive: true });
   }
+
+  var scrollHint = document.querySelector(".hero__scroll-hint");
+  if (scrollHint) {
+    var hideHintTimer = null;
+    var markHeroScrolled = function () {
+      document.body.classList.add("hero-scrolled");
+      window.removeEventListener("scroll", onScrollHint);
+      if (hideHintTimer !== null) {
+        clearTimeout(hideHintTimer);
+        hideHintTimer = null;
+      }
+    };
+    var onScrollHint = function () {
+      if (window.scrollY > 48) {
+        markHeroScrolled();
+      }
+    };
+    window.addEventListener("scroll", onScrollHint, { passive: true });
+    onScrollHint();
+    scrollHint.addEventListener("click", markHeroScrolled);
+    hideHintTimer = window.setTimeout(markHeroScrolled, 6000);
+  }
 })();
