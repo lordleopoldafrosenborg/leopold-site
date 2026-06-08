@@ -237,7 +237,7 @@ body.nav-open {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: clamp(100px, 14vh, 140px) var(--page-pad) clamp(72px, 14vh, 120px);
+  padding: clamp(100px, 14vh, 140px) var(--page-pad) clamp(64px, 10vh, 96px);
   width: 100%;
   max-width: 100%;
 }
@@ -304,61 +304,77 @@ body.nav-open {
   border-color: rgba(249, 249, 249, 0.45);
 }
 
-/* Diskret hint: pil ned mod stillfotos (skjules efter scroll, se main.js) */
-.hero__scroll-hint {
-  display: inline-flex;
+/* Scroll-hint: pil under hero (kun tilføjelse — ændrer ikke eksisterende hero-layout) */
+.hero__scroll-cue {
+  position: absolute;
+  z-index: 3;
+  left: calc(50% - 22px);
+  bottom: clamp(1rem, 3.5vh, 2rem);
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: clamp(1.75rem, 4vh, 2.5rem);
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0.5rem;
-  text-decoration: none;
-  color: rgba(249, 249, 249, 0.52);
-  transition: color 480ms var(--ease), opacity 520ms var(--ease);
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border-radius: 999px;
+  color: rgba(249, 249, 249, 0.82);
+  background: rgba(19, 18, 17, 0.35);
+  border: 1px solid rgba(249, 249, 249, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 1;
+  transition:
+    opacity 520ms var(--ease),
+    border-color 480ms var(--ease),
+    background 480ms var(--ease);
 }
 
-.hero__scroll-hint:hover,
-.hero__scroll-hint:focus-visible {
-  color: rgba(249, 249, 249, 0.88);
+.hero__scroll-cue:hover {
+  background: rgba(249, 249, 249, 0.08);
+  border-color: rgba(249, 249, 249, 0.38);
+  color: var(--fg);
 }
 
-.hero__scroll-hint:focus-visible {
-  outline: 1px solid rgba(249, 249, 249, 0.35);
-  outline-offset: 4px;
+.hero__scroll-cue.is-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.hero__scroll-hint__chev {
+.hero__scroll-cue__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hero-scroll-cue-float 2.4s var(--ease) infinite;
+}
+
+.hero__scroll-cue.is-hidden .hero__scroll-cue__icon {
+  animation: none;
+}
+
+.hero__scroll-cue__icon svg {
   display: block;
-  width: 0;
-  height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 11px solid currentColor;
-  opacity: 0.9;
-  will-change: transform;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .hero__scroll-hint__chev {
-    animation: hero-scroll-hint-chev 3.6s cubic-bezier(0.45, 0.05, 0.25, 1) infinite;
-  }
-}
-
-@keyframes hero-scroll-hint-chev {
+@keyframes hero-scroll-cue-float {
   0%,
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translateY(0);
   }
 
   50% {
-    transform: translate3d(0, 9px, 0);
+    transform: translateY(6px);
   }
 }
 
-body.hero-scrolled .hero__scroll-hint {
-  opacity: 0;
-  pointer-events: none;
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-cue {
+    transition-duration: 200ms;
+  }
+
+  .hero__scroll-cue__icon {
+    animation: none;
+  }
 }
 
 /* Gallery — stille redaktionelt still-grid (matcher mørk, rolig site-vibe) */

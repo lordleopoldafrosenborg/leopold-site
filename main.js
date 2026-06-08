@@ -84,6 +84,27 @@
     window.addEventListener("resize", fitTitle, { passive: true });
   }
 
+  var scrollCue = document.querySelector(".hero__scroll-cue");
+  if (scrollCue) {
+    var cueTick = false;
+    var updateScrollCue = function () {
+      cueTick = false;
+      if (window.scrollY > 56) {
+        scrollCue.classList.add("is-hidden");
+      } else {
+        scrollCue.classList.remove("is-hidden");
+      }
+    };
+    var onScrollForCue = function () {
+      if (!cueTick) {
+        cueTick = true;
+        requestAnimationFrame(updateScrollCue);
+      }
+    };
+    window.addEventListener("scroll", onScrollForCue, { passive: true });
+    updateScrollCue();
+  }
+
   var workTitles = document.querySelectorAll(".work-line__title");
   if (workTitles.length) {
     var fitWorkLineTitles = function () {
@@ -154,27 +175,5 @@
       scheduleFitWorkTitles();
     }
     window.addEventListener("resize", scheduleFitWorkTitles, { passive: true });
-  }
-
-  var scrollHint = document.querySelector(".hero__scroll-hint");
-  if (scrollHint) {
-    var hideHintTimer = null;
-    var markHeroScrolled = function () {
-      document.body.classList.add("hero-scrolled");
-      window.removeEventListener("scroll", onScrollHint);
-      if (hideHintTimer !== null) {
-        clearTimeout(hideHintTimer);
-        hideHintTimer = null;
-      }
-    };
-    var onScrollHint = function () {
-      if (window.scrollY > 48) {
-        markHeroScrolled();
-      }
-    };
-    window.addEventListener("scroll", onScrollHint, { passive: true });
-    onScrollHint();
-    scrollHint.addEventListener("click", markHeroScrolled);
-    hideHintTimer = window.setTimeout(markHeroScrolled, 6000);
   }
 })();
