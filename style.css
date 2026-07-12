@@ -190,9 +190,10 @@ body.nav-open {
 
 /* Hero - forsiden */
 .hero {
+  --hero-peek: clamp(96px, 15vh, 156px);
   position: relative;
-  min-height: 100svh;
-  min-height: 100dvh;
+  min-height: calc(100svh - var(--hero-peek));
+  min-height: calc(100dvh - var(--hero-peek));
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -382,6 +383,11 @@ body.nav-open {
   border-top: 1px solid rgba(249, 249, 249, 0.08);
   background: var(--bg-deep);
   padding: clamp(40px, 6vw, 72px) var(--page-pad);
+}
+
+/* Forside: hero kortere end viewport — lidt mindre top-padding så peek viser billeder */
+.hero + .gallery {
+  padding-top: clamp(28px, 4.5vw, 48px);
 }
 
 .gallery__inner {

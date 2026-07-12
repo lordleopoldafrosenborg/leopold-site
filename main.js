@@ -48,6 +48,8 @@
 
   if (!reduceMotion && "IntersectionObserver" in window) {
     var fadeEls = document.querySelectorAll("[data-fade]");
+    var galleryPeek = document.querySelector(".hero + .gallery");
+    var fadeRootMargin = galleryPeek ? "20% 0px 16% 0px" : "0px 0px 16% 0px";
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -57,7 +59,7 @@
           }
         });
       },
-      { rootMargin: "0px 0px 16% 0px", threshold: 0.04 }
+      { rootMargin: fadeRootMargin, threshold: 0.04 }
     );
     fadeEls.forEach(function (el) {
       io.observe(el);
