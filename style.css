@@ -1182,10 +1182,11 @@ body.nav-open {
   max-width: min(1200px, 100%);
   padding-left: clamp(16px, 4vw, 40px);
   padding-right: clamp(16px, 4vw, 40px);
+  padding-bottom: clamp(40px, 6vw, 72px);
 }
 
 .contact-panel {
-  padding: clamp(24px, 4vw, 44px) 0 clamp(48px, 8vw, 96px);
+  padding: clamp(24px, 4vw, 44px) 0 0;
 }
 
 .page--contact .info-panel__title {
