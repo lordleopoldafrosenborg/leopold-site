@@ -1266,7 +1266,7 @@ body.nav-open {
 }
 
 .site-footer__name {
-  margin: 0 0 3px;
+  margin: 0 0 clamp(6px, 1.2vw, 10px);
   font-family: var(--font-serif);
   font-size: clamp(14px, 1.35vw, 16px);
   font-weight: 400;
@@ -1275,20 +1275,12 @@ body.nav-open {
   color: rgba(249, 249, 249, 0.78);
 }
 
-.site-footer__roles {
-  margin: 0 0 7px;
-  font-family: var(--font-sans);
-  font-size: 10.5px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  color: rgba(249, 249, 249, 0.4);
-}
-
 .site-footer__footline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 12px;
+  justify-content: flex-start;
+  gap: 6px 14px;
 }
 
 .site-footer__footline .site-footer__email {
