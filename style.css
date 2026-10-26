@@ -14,6 +14,7 @@
   --radius-btn: 28px;
 }
 
+
 *,
 *::before,
 *::after {
@@ -96,8 +97,74 @@ a:hover {
   justify-content: space-between;
   gap: 16px;
   padding: 18px var(--page-pad);
-  border-bottom: 1px solid var(--line);
   background: rgba(28, 28, 28, 0.92);
+}
+
+.site-header--home {
+  isolation: isolate;
+  background: rgba(19, 18, 17, 0);
+  transition: background-color 1200ms var(--ease);
+}
+
+.site-header--home.is-past-hero {
+  background: rgba(19, 18, 17, 0.86);
+}
+
+.site-header__video-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: var(--header-video-opacity, 0.72);
+  clip-path: inset(0 0 var(--header-video-clip, 0px) 0);
+  pointer-events: none;
+}
+
+.site-header__video-backdrop:not(.is-synced) {
+  opacity: 0;
+}
+
+.site-header__video-backdrop video {
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  width: calc(100% + 32px);
+  height: calc(100% + 32px);
+  object-fit: cover;
+  object-position: center 42%;
+  filter: blur(16px) brightness(0.55) saturate(0.7);
+}
+
+.site-header__video-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 18, 17, 0.38);
+}
+
+.site-header--home > :not(.site-header__video-backdrop) {
+  z-index: 1;
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 160, 106, 0.2) 18%,
+    rgba(201, 160, 106, 0.3) 50%,
+    rgba(201, 160, 106, 0.2) 82%,
+    transparent 100%
+  );
+  box-shadow: 0 0 4px rgba(201, 160, 106, 0.08);
+  opacity: var(--header-line-opacity, 1);
+  transform: translateY(calc(0px - var(--header-video-clip, 0px)));
+  pointer-events: none;
 }
 
 .site-header__menu {
@@ -124,6 +191,7 @@ a:hover {
   letter-spacing: 0.02em;
   text-align: center;
 }
+
 
 .site-nav {
   position: fixed;
@@ -190,7 +258,7 @@ body.nav-open {
 
 /* Hero - forsiden */
 .hero {
-  --hero-peek: clamp(96px, 15vh, 156px);
+  --hero-peek: clamp(88px, 13vh, 144px);
   position: relative;
   min-height: calc(100svh - var(--hero-peek));
   min-height: calc(100dvh - var(--hero-peek));
@@ -210,7 +278,7 @@ body.nav-open {
   position: absolute;
   left: -1.25%;
   right: -1.25%;
-  top: -6.5%;
+  top: 65px;
   height: 113%;
   will-change: transform;
 }
@@ -228,6 +296,12 @@ body.nav-open {
   .hero__parallax-layer img,
   .hero__parallax-layer video {
     object-position: center 42%;
+  }
+}
+
+@media (max-width: 899px) {
+  .hero__parallax-layer {
+    top: 78px;
   }
 }
 

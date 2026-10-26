@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=21">
+  <link rel="stylesheet" href="style.css?v=44">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -95,7 +95,12 @@
 <body>
   <a class="skip-link" href="#main">Spring til indhold</a>
 
-  <header class="site-header">
+  <header class="site-header site-header--home">
+    <div class="site-header__video-backdrop" aria-hidden="true">
+      <video muted loop playsinline preload="auto" poster="images/hero-dogme.jpeg">
+        <source src="video/Forside%20Master%20semi%20h%C3%B8j%20RF.mp4" type="video/mp4">
+      </video>
+    </div>
     <button class="site-header__menu" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
       <span></span><span></span><span></span>
       <span class="visually-hidden">Menu</span>
@@ -179,21 +184,6 @@
       </div>
     </section>
 
-    <section class="home-reel" data-fade aria-label="Kort reel">
-      <div class="home-reel__inner">
-        <div class="home-reel__player">
-          <div class="home-reel__embed">
-            <iframe
-              src="https://player.vimeo.com/video/1199525155?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;transparent=1"
-              title="kort-reel"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              loading="lazy"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -230,7 +220,6 @@
     </div>
   </footer>
 
-  <script src="https://player.vimeo.com/api/player.js" defer></script>
-  <script src="main.js"></script>
+  <script src="main.js?v=33"></script>
 </body>
 </html>

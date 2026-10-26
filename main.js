@@ -20,6 +20,112 @@
     });
   }
 
+  var headerLine = document.querySelector(".site-header");
+  var heroLayer = document.querySelector(".hero__parallax-layer");
+  var homeHero = document.querySelector(".hero");
+  if (headerLine) {
+    var headerLineTicking = false;
+    var updateHeaderLine = function () {
+      headerLineTicking = false;
+      var scrollY = Math.max(window.scrollY, 0);
+      var headerHeight = headerLine.offsetHeight;
+      if (heroLayer) {
+        heroLayer.style.top = headerHeight + "px";
+      }
+      if (homeHero && headerLine.classList.contains("site-header--home")) {
+        headerLine.classList.toggle(
+          "is-past-hero",
+          homeHero.getBoundingClientRect().bottom <= headerHeight
+        );
+      }
+      var videoFadeDistance = headerHeight / 0.84 + 12;
+      var videoFadeProgress = Math.min(scrollY / videoFadeDistance, 1);
+      headerLine.style.setProperty("--header-line-opacity", String(1 - videoFadeProgress));
+      headerLine.style.setProperty("--header-video-opacity", String(0.72 * (1 - videoFadeProgress)));
+      headerLine.style.setProperty(
+        "--header-video-clip",
+        Math.round(headerHeight * videoFadeProgress) + "px"
+      );
+    };
+    var onScrollForHeaderLine = function () {
+      if (!headerLineTicking) {
+        headerLineTicking = true;
+        window.requestAnimationFrame(updateHeaderLine);
+      }
+    };
+    window.addEventListener("scroll", onScrollForHeaderLine, { passive: true });
+    window.addEventListener("resize", onScrollForHeaderLine, { passive: true });
+    updateHeaderLine();
+  }
+
+  var heroVideo = document.querySelector(".hero__parallax-layer video");
+  var headerVideoBackdrop = document.querySelector(".site-header__video-backdrop");
+  var headerVideo = headerVideoBackdrop && headerVideoBackdrop.querySelector("video");
+  if (heroVideo && headerVideo) {
+    var headerVideoSyncing = false;
+    var alignHeaderVideo = function () {
+      if (headerVideoSyncing || heroVideo.paused || headerVideo.readyState < 2) {
+        return;
+      }
+
+      var drift = heroVideo.currentTime - headerVideo.currentTime;
+      if (Math.abs(drift) > 0.12) {
+        headerVideoSyncing = true;
+        headerVideo.pause();
+        headerVideoBackdrop.classList.remove("is-synced");
+        headerVideo.addEventListener(
+          "seeked",
+          function () {
+            headerVideoSyncing = false;
+            alignHeaderVideo();
+          },
+          { once: true }
+        );
+        headerVideo.currentTime = Math.max(0, heroVideo.currentTime);
+        return;
+      }
+
+      var correction = Math.max(-0.03, Math.min(0.03, drift * 0.12));
+      headerVideo.playbackRate = heroVideo.playbackRate + correction;
+      if (headerVideo.paused) {
+        var playPromise = headerVideo.play();
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise
+            .then(function () {
+              headerVideoBackdrop.classList.add("is-synced");
+            })
+            .catch(function () {});
+        } else {
+          headerVideoBackdrop.classList.add("is-synced");
+        }
+      } else {
+        headerVideoBackdrop.classList.add("is-synced");
+      }
+    };
+
+    var maintainHeaderVideoSync = function () {
+      if (headerVideoSyncing || heroVideo.paused || headerVideo.paused) {
+        return;
+      }
+
+      var drift = heroVideo.currentTime - headerVideo.currentTime;
+      if (Math.abs(drift) > 0.35) {
+        alignHeaderVideo();
+      } else {
+        var correction = Math.max(-0.03, Math.min(0.03, drift * 0.12));
+        headerVideo.playbackRate = heroVideo.playbackRate + correction;
+      }
+    };
+
+    heroVideo.addEventListener("play", alignHeaderVideo);
+    heroVideo.addEventListener("timeupdate", maintainHeaderVideoSync);
+    heroVideo.addEventListener("seeked", alignHeaderVideo);
+    heroVideo.addEventListener("pause", function () {
+      headerVideo.pause();
+    });
+    headerVideo.addEventListener("loadeddata", alignHeaderVideo);
+  }
+
   var parallax = document.querySelector("[data-parallax]");
   if (parallax && !reduceMotion) {
     var layer = parallax.querySelector(".hero__parallax-layer");
