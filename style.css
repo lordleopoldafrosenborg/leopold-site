@@ -321,15 +321,7 @@ body.nav-open {
 
 @media (max-width: 899px) {
   .hero__parallax-layer {
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 100%;
-  }
-
-  .hero__parallax-layer video {
-    object-fit: contain;
-    object-position: center center;
+    top: 78px;
   }
 }
 
