@@ -247,6 +247,18 @@ body.nav-open {
   overflow: hidden;
 }
 
+@media (max-width: 899px) {
+  .site-header__brand {
+    position: absolute;
+    left: 50%;
+    flex: 0 0 auto;
+    width: max-content;
+    text-align: center;
+    white-space: nowrap;
+    transform: translateX(-50%);
+  }
+}
+
 @media (min-width: 900px) {
   .site-header__menu {
     display: none;
