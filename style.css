@@ -215,7 +215,9 @@ body.nav-open {
   will-change: transform;
 }
 
-.hero__parallax-layer img {
+.hero__parallax-layer img,
+.hero__parallax-layer video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -223,7 +225,8 @@ body.nav-open {
 }
 
 @media (max-aspect-ratio: 3/4) {
-  .hero__parallax-layer img {
+  .hero__parallax-layer img,
+  .hero__parallax-layer video {
     object-position: center 42%;
   }
 }
