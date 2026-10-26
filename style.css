@@ -188,6 +188,7 @@ a:hover {
   width: 20px;
   height: 1px;
   background: currentColor;
+  opacity: 0.64;
   margin: 5px 0;
   transition: transform 220ms var(--ease), opacity 160ms var(--ease);
 }
