@@ -146,6 +146,11 @@ a:hover {
   z-index: 1;
 }
 
+.site-header--home > .site-header__menu {
+  position: relative;
+  z-index: 50;
+}
+
 .site-header::after {
   content: "";
   position: absolute;
@@ -168,6 +173,8 @@ a:hover {
 }
 
 .site-header__menu {
+  position: relative;
+  z-index: 50;
   appearance: none;
   border: 0;
   background: none;
@@ -182,6 +189,19 @@ a:hover {
   height: 1px;
   background: currentColor;
   margin: 5px 0;
+  transition: transform 220ms var(--ease), opacity 160ms var(--ease);
+}
+
+.site-header__menu[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+
+.site-header__menu[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header__menu[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
 }
 
 .site-header__brand {
@@ -717,6 +737,74 @@ body.nav-open {
 
     .gallery__card--hide-2col {
       display: block;
+    }
+  }
+}
+
+@media (hover: none) {
+  .gallery__card {
+    cursor: pointer;
+  }
+
+  .gallery__card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 52%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      rgba(10, 9, 8, 0.62) 0%,
+      rgba(12, 11, 10, 0.4) 24%,
+      rgba(12, 11, 10, 0.2) 52%,
+      rgba(12, 11, 10, 0.06) 78%,
+      rgba(12, 11, 10, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity 320ms var(--ease);
+  }
+
+  .gallery__caption {
+    display: block !important;
+    position: absolute;
+    z-index: 2;
+    left: 0.42rem;
+    bottom: 0.38rem;
+    max-width: min(94%, 12.5rem);
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: calc(10.75px * 1.07);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.09em;
+    color: rgba(249, 249, 249, 0.97);
+    text-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.58),
+      0 0 1px rgba(0, 0, 0, 0.78),
+      0 5px 24px rgba(0, 0, 0, 0.32);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 320ms var(--ease);
+  }
+
+  .gallery__card.is-caption-open::before,
+  .gallery__card.is-caption-open .gallery__caption {
+    opacity: 1;
+  }
+
+  .gallery__card:focus-visible {
+    outline: 2px solid var(--warm);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery__card::before,
+    .gallery__caption {
+      transition-duration: 90ms;
     }
   }
 }

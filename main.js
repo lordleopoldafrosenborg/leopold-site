@@ -20,6 +20,68 @@
     });
   }
 
+  var galleryCards = Array.prototype.slice.call(document.querySelectorAll(".gallery__card"));
+  var touchGallery = window.matchMedia && window.matchMedia("(hover: none)").matches;
+  if (touchGallery && galleryCards.length) {
+    var closeGalleryCaptions = function (exceptCard) {
+      galleryCards.forEach(function (card) {
+        if (card === exceptCard) {
+          return;
+        }
+        var caption = card.querySelector(".gallery__caption");
+        card.classList.remove("is-caption-open");
+        card.setAttribute("aria-expanded", "false");
+        if (caption) {
+          card.setAttribute("aria-label", "Vis billedtekst: " + caption.textContent.trim());
+        }
+      });
+    };
+
+    galleryCards.forEach(function (card) {
+      var caption = card.querySelector(".gallery__caption");
+      if (!caption) {
+        return;
+      }
+      var captionText = caption.textContent.trim();
+      var toggleCaption = function () {
+        var open = !card.classList.contains("is-caption-open");
+        closeGalleryCaptions(card);
+        card.classList.toggle("is-caption-open", open);
+        card.setAttribute("aria-expanded", open ? "true" : "false");
+        card.setAttribute(
+          "aria-label",
+          (open ? "Skjul" : "Vis") + " billedtekst: " + captionText
+        );
+      };
+
+      card.setAttribute("role", "button");
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("aria-expanded", "false");
+      card.setAttribute("aria-label", "Vis billedtekst: " + captionText);
+      card.addEventListener("click", toggleCaption);
+      card.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggleCaption();
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      var clickedCard = galleryCards.some(function (card) {
+        return card.contains(event.target);
+      });
+      if (!clickedCard) {
+        closeGalleryCaptions();
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeGalleryCaptions();
+      }
+    });
+  }
+
   var headerLine = document.querySelector(".site-header");
   var heroLayer = document.querySelector(".hero__parallax-layer");
   var homeHero = document.querySelector(".hero");
