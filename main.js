@@ -121,9 +121,65 @@
   }
 
   var heroVideo = document.querySelector(".hero__parallax-layer video");
+  var heroVideoLayer = document.querySelector(".hero__parallax-layer");
   var headerVideoBackdrop = document.querySelector(".site-header__video-backdrop");
   var headerVideo = headerVideoBackdrop && headerVideoBackdrop.querySelector("video");
+  if (heroVideo && heroVideoLayer) {
+    var showHeroVideoFallback = function () {
+      heroVideoLayer.classList.remove("is-playing");
+      heroVideoLayer.classList.add("is-fallback");
+    };
+    var clearHeroVideoFallback = function () {
+      heroVideoLayer.classList.remove("is-fallback");
+      heroVideoLayer.classList.add("is-playing");
+      if (headerVideoBackdrop) {
+        headerVideoBackdrop.classList.remove("is-synced");
+      }
+    };
+
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.playsInline = true;
+    heroVideo.setAttribute("webkit-playsinline", "");
+    heroVideo.addEventListener("playing", clearHeroVideoFallback);
+    heroVideo.addEventListener("pause", function () {
+      heroVideoLayer.classList.remove("is-playing");
+    });
+    heroVideo.addEventListener("error", showHeroVideoFallback);
+
+    var startHeroVideo = function () {
+      if (document.visibilityState === "hidden" || !heroVideo.paused) {
+        return;
+      }
+      heroVideo.muted = true;
+      try {
+        var playPromise = heroVideo.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(showHeroVideoFallback);
+        }
+      } catch (error) {
+        showHeroVideoFallback();
+      }
+    };
+
+    heroVideo.addEventListener("canplay", startHeroVideo);
+    window.addEventListener("pageshow", startHeroVideo);
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") {
+        startHeroVideo();
+      }
+    });
+    if (!heroVideo.paused) {
+      heroVideoLayer.classList.add("is-playing");
+    } else if (heroVideo.readyState >= 2) {
+      startHeroVideo();
+    }
+  }
   if (heroVideo && headerVideo) {
+    headerVideo.muted = true;
+    headerVideo.defaultMuted = true;
+    headerVideo.playsInline = true;
+    headerVideo.setAttribute("webkit-playsinline", "");
     var headerVideoSyncing = false;
     var alignHeaderVideo = function () {
       if (headerVideoSyncing || heroVideo.paused || headerVideo.readyState < 2) {

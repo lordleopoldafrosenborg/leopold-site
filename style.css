@@ -325,10 +325,43 @@ body.nav-open {
   object-position: center center;
 }
 
+.hero__parallax-layer video {
+  pointer-events: none;
+}
+
+.hero__parallax-layer video::-webkit-media-controls-start-playback-button,
+.hero__parallax-layer video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+.hero__parallax-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/hero-video-poster.jpg") center center / cover no-repeat;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.hero__parallax-layer.is-playing::after {
+  opacity: 0;
+}
+
+.hero__parallax-layer.is-fallback::after {
+  background-image:
+    url("images/hero-video-fallback.gif"),
+    url("images/hero-video-poster.jpg");
+}
+
 @media (max-aspect-ratio: 3/4) {
   .hero__parallax-layer img,
   .hero__parallax-layer video {
     object-position: center 42%;
+  }
+
+  .hero__parallax-layer::after {
+    background-position: center 42%;
   }
 }
 
