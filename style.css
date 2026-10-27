@@ -339,7 +339,7 @@ body.nav-open {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("images/hero-video-poster.jpg") center center / cover no-repeat;
+  background: url("images/Ny first frame.png") center center / cover no-repeat;
   pointer-events: none;
   opacity: 1;
 }
@@ -350,8 +350,8 @@ body.nav-open {
 
 .hero__parallax-layer.is-fallback::after {
   background-image:
-    url("images/hero-video-fallback.gif"),
-    url("images/hero-video-poster.jpg");
+    url("images/hero-video-fallback-master.gif"),
+    url("images/Ny first frame.png");
 }
 
 @media (max-aspect-ratio: 3/4) {
