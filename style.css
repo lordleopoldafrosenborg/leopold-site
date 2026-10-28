@@ -391,16 +391,15 @@ body.nav-open {
   display: flex;
   justify-content: center;
   overflow: hidden;
-  margin-bottom: clamp(32px, 5vw, 52px);
+  margin-bottom: clamp(24px, 4vw, 40px);
 }
 
 .hero__title {
   margin: 0;
   font-weight: 400;
-  font-size: clamp(10px, 2.75vw, 15px);
+  font-size: clamp(11px, 3.025vw, 16.5px);
   line-height: 1.4;
-  letter-spacing: 0.45em;
-  word-spacing: 0.2em;
+  letter-spacing: clamp(0.08em, 1.65vw, 0.2em);
   text-transform: lowercase;
   color: var(--fg);
   white-space: nowrap;
@@ -411,7 +410,7 @@ body.nav-open {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: clamp(10px, 2vw, 18px);
+  gap: clamp(11px, 2.2vw, 19.8px);
 }
 
 .hero__links a {
@@ -419,10 +418,10 @@ body.nav-open {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0 clamp(18px, 3vw, 26px);
+  min-height: 48.4px;
+  padding: 0 clamp(19.8px, 3.3vw, 28.6px);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12.1px;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
