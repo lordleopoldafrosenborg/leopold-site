@@ -1283,6 +1283,16 @@ body.nav-open {
   text-underline-offset: 0.22em;
 }
 
+.about-intro__membership-line {
+  white-space: nowrap;
+}
+
+@media (max-width: 559px) {
+  .about-intro__membership-line {
+    font-size: clamp(11px, 4vw, 16px);
+  }
+}
+
 .info-sheet {
   margin: 0;
 }
