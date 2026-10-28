@@ -162,25 +162,25 @@
         if (playPromise && typeof playPromise.catch === "function") {
           playPromise.catch(function () {
             if (fromUserGesture === true) {
-              userScrollAttempted = false;
+              userPlaybackAttempted = false;
               showHeroVideoFallback();
             }
           });
         }
       } catch (error) {
         if (fromUserGesture === true) {
-          userScrollAttempted = false;
+          userPlaybackAttempted = false;
           showHeroVideoFallback();
         }
       }
     };
 
-    var userScrollAttempted = false;
-    var startHeroVideoFromScroll = function () {
-      if (userScrollAttempted || !heroVideo.paused) {
+    var userPlaybackAttempted = false;
+    var startHeroVideoFromUserAction = function () {
+      if (userPlaybackAttempted || !heroVideo.paused) {
         return;
       }
-      userScrollAttempted = true;
+      userPlaybackAttempted = true;
       userGesturePlayback = true;
       startHeroVideo(true);
 
@@ -202,8 +202,32 @@
     window.addEventListener(
       "wheel",
       function (event) {
-        if (event.isTrusted && event.deltaY > 0) {
-          startHeroVideoFromScroll();
+        if (event.isTrusted && event.deltaY !== 0) {
+          startHeroVideoFromUserAction();
+        }
+      },
+      { passive: true }
+    );
+
+    var lastScrollY = window.scrollY;
+    window.addEventListener(
+      "scroll",
+      function (event) {
+        var currentScrollY = window.scrollY;
+        var moved = currentScrollY !== lastScrollY;
+        lastScrollY = currentScrollY;
+        if (event.isTrusted && moved) {
+          startHeroVideoFromUserAction();
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "pointerdown",
+      function (event) {
+        if (event.isTrusted && (event.pointerType !== "mouse" || event.button === 0)) {
+          startHeroVideoFromUserAction();
         }
       },
       { passive: true }
@@ -232,10 +256,22 @@
         var touch = event.changedTouches[0];
         var movedDown =
           window.scrollY > touchStartScrollY + 1 ||
-          (touch && touchStartY - touch.clientY > 8);
+          (touch && touchStartY - touch.clientY > 2);
         touchStartY = null;
         if (movedDown) {
-          startHeroVideoFromScroll();
+          startHeroVideoFromUserAction();
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener(
+      "touchmove",
+      function (event) {
+        if (!event.isTrusted || touchStartY === null || event.touches.length !== 1) {
+          return;
+        }
+        if (touchStartY - event.touches[0].clientY > 2) {
+          startHeroVideoFromUserAction();
         }
       },
       { passive: true }
