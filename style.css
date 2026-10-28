@@ -399,7 +399,8 @@ body.nav-open {
   font-weight: 400;
   font-size: clamp(10px, 2.75vw, 15px);
   line-height: 1.4;
-  letter-spacing: clamp(0.08em, 1.65vw, 0.2em);
+  letter-spacing: 0.45em;
+  word-spacing: 0.2em;
   text-transform: lowercase;
   color: var(--fg);
   white-space: nowrap;
@@ -1122,6 +1123,17 @@ body.nav-open {
   letter-spacing: 0.02em;
 }
 
+.work-line__award {
+  grid-column: 1 / -1;
+  margin-top: -0.2rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: rgba(249, 249, 249, 0.44);
+  letter-spacing: 0.02em;
+}
+
 .work-voice {
   margin-top: clamp(48px, 8vw, 88px);
   padding-top: clamp(40px, 6vw, 72px);
@@ -1213,6 +1225,63 @@ body.nav-open {
   max-width: min(1200px, 100%);
   padding-left: clamp(16px, 4vw, 40px);
   padding-right: clamp(16px, 4vw, 40px);
+  padding-top: clamp(84px, 10.5vw, 94px);
+}
+
+.page--information .about-intro {
+  max-width: min(1080px, 100%);
+  margin-inline: auto;
+  padding: 0 0 clamp(40px, 6vw, 60px);
+}
+
+.about-intro__title {
+  max-width: 78ch;
+  margin: 0 auto clamp(28px, 4vw, 40px);
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: rgba(249, 249, 249, 0.9);
+}
+
+.about-intro__body {
+  max-width: 78ch;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 1.4vw, 18px);
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(249, 249, 249, 0.82);
+}
+
+.about-intro__body p {
+  margin: 0;
+}
+
+.about-intro__body p + p {
+  margin-top: 1.1em;
+}
+
+.about-intro__lead {
+  color: rgba(249, 249, 249, 0.92);
+}
+
+.about-intro__lead strong {
+  font-weight: 700;
+}
+
+.about-intro__membership {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(249, 249, 249, 0.55);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
 }
 
 .info-sheet {
@@ -1220,8 +1289,8 @@ body.nav-open {
 }
 
 .page--information .info-sheet {
-  max-width: min(880px, 100%);
-  margin-left: 0;
+  max-width: min(1000px, 100%);
+  margin-left: auto;
   margin-right: auto;
 }
 
