@@ -50,11 +50,13 @@
         if (viewportWidth <= 899) {
           document.documentElement.style.width = "";
           document.documentElement.style.zoom = "";
+          document.documentElement.style.setProperty("--cv-ui-scale", "1");
           return;
         }
         const layoutWidth = Math.max(designWidth, viewportWidth);
         document.documentElement.style.width = `${layoutWidth}px`;
         document.documentElement.style.zoom = String(viewportWidth / layoutWidth);
+        document.documentElement.style.setProperty("--cv-ui-scale", String(layoutWidth / viewportWidth));
       };
 
       fitCvToViewport();
@@ -64,6 +66,7 @@
   <style>
     html {
       overflow-x: hidden;
+      --cv-ui-scale: 1;
     }
 
     @media (min-width: 900px) {
@@ -107,6 +110,42 @@
         padding: 0;
         font-size: 12px;
       }
+
+      .body--cv-fixed-layout .site-footer {
+        margin-top: calc(clamp(14px, 3vw, 28px) * var(--cv-ui-scale));
+        padding-top: calc(clamp(12px, 2.4vw, 20px) * var(--cv-ui-scale));
+        padding-right: max(calc(var(--page-pad) * var(--cv-ui-scale)), env(safe-area-inset-right, 0px));
+        padding-bottom: calc(clamp(14px, 2.6vw, 22px) * var(--cv-ui-scale));
+        padding-left: max(calc(var(--page-pad) * var(--cv-ui-scale)), env(safe-area-inset-left, 0px));
+        border-top-width: calc(1px * var(--cv-ui-scale));
+      }
+
+      .body--cv-fixed-layout .site-footer__inner { max-width: calc(var(--max) * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__nav { margin-bottom: calc(clamp(8px, 1.6vw, 14px) * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__nav a {
+        font-size: calc(10px * var(--cv-ui-scale));
+        padding-block: calc(2px * var(--cv-ui-scale));
+        margin-right: calc(clamp(10px, 2vw, 16px) * var(--cv-ui-scale));
+        border-bottom-width: calc(1px * var(--cv-ui-scale));
+      }
+      .body--cv-fixed-layout .site-footer__name {
+        margin-bottom: calc(clamp(6px, 1.2vw, 10px) * var(--cv-ui-scale));
+        font-size: calc(clamp(14px, 1.35vw, 16px) * var(--cv-ui-scale));
+      }
+      .body--cv-fixed-layout .site-footer__meta { max-width: calc(38rem * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__footline { gap: calc(6px * var(--cv-ui-scale)) calc(14px * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__email { font-size: calc(10.5px * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__email a { border-bottom-width: calc(1px * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__icon-link {
+        min-width: calc(22px * var(--cv-ui-scale));
+        min-height: calc(26px * var(--cv-ui-scale));
+      }
+      .body--cv-fixed-layout .site-footer__icon-link svg {
+        width: calc(14px * var(--cv-ui-scale));
+        height: calc(14px * var(--cv-ui-scale));
+      }
+      .body--cv-fixed-layout .site-footer__icon-link--imdb { padding-inline: calc(1px * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__icon-link--imdb svg { height: calc(10px * var(--cv-ui-scale)); }
     }
 
     .page--cv {
@@ -639,6 +678,41 @@
       <a href="https://www.youtube.com/watch?v=je6NIQmMCPU" target="_blank" rel="noopener noreferrer">Stemmeprøve</a>
     </nav>
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <nav class="site-footer__nav" aria-label="Sider">
+        <a href="index.html">Forside</a>
+        <a href="information.html">Om</a>
+        <a href="cv.html" aria-current="page">CV</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <div class="site-footer__meta">
+        <p class="site-footer__name">Leopold af Rosenborg</p>
+        <div class="site-footer__footline">
+          <p class="site-footer__email"><a href="mailto:Leopoldafrosenborg@gmail.com">Leopoldafrosenborg@gmail.com</a></p>
+          <ul class="site-footer__social" aria-label="Profiler">
+            <li>
+              <a class="site-footer__icon-link" href="https://www.instagram.com/leopold_afrosenborg/" rel="noopener noreferrer" target="_blank" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__icon-link site-footer__icon-link--imdb" href="https://www.imdb.com/name/nm16844776/" rel="noopener noreferrer" target="_blank" aria-label="IMDb">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 12" fill="currentColor" aria-hidden="true"><text x="0" y="9.5" fill="currentColor" font-size="8.5" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" letter-spacing="0.02em">IMDb</text></svg>
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__icon-link" href="https://www.linkedin.com/in/leopold-af-rosenborg-3b47512b6/" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script src="main.js?v=35"></script>
 </body>
 </html>
