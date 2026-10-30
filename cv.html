@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#131211">
-  <link rel="stylesheet" href="style.css?v=69">
+  <link rel="stylesheet" href="style.css?v=70">
   <title>CV - Leopold af Rosenborg | Dansk skuespiller</title>
   <meta name="description" content="Se CV'et for den danske skuespiller Leopold af Rosenborg med roller fra teater, film, tv, reklame, kortfilm, musikvideoer og ballet.">
   <link rel="canonical" href="https://leopoldafrosenborg.dk/cv.html">
@@ -47,10 +47,14 @@
       const designWidth = 1500;
       const fitCvToViewport = () => {
         const viewportWidth = window.innerWidth;
+        if (viewportWidth <= 899) {
+          document.documentElement.style.width = "";
+          document.documentElement.style.zoom = "";
+          return;
+        }
         const layoutWidth = Math.max(designWidth, viewportWidth);
-        const scale = viewportWidth / layoutWidth;
         document.documentElement.style.width = `${layoutWidth}px`;
-        document.documentElement.style.zoom = String(scale);
+        document.documentElement.style.zoom = String(viewportWidth / layoutWidth);
       };
 
       fitCvToViewport();
@@ -62,45 +66,47 @@
       overflow-x: hidden;
     }
 
-    body.body--cv-test {
-      --page-pad: 48px;
-      overflow-x: hidden;
-    }
+    @media (min-width: 900px) {
+      body.body--cv-fixed-layout {
+        --page-pad: 48px;
+        overflow-x: hidden;
+      }
 
-    .body--cv-test .site-header {
-      left: 0;
-      right: auto;
-      width: max(1500px, 100vw);
-      padding: 18px 48px;
-    }
+      .body--cv-fixed-layout .site-header {
+        left: 0;
+        right: auto;
+        width: max(1500px, 100vw);
+        padding: 18px 48px;
+      }
 
-    .body--cv-test .site-header__menu { display: none; }
+      .body--cv-fixed-layout .site-header__menu { display: none; }
 
-    .body--cv-test .site-header__brand {
-      position: static;
-      flex: 0 1 auto;
-      width: auto;
-      font-size: 18px;
-      text-align: left;
-      transform: none;
-    }
+      .body--cv-fixed-layout .site-header__brand {
+        position: static;
+        flex: 0 1 auto;
+        width: auto;
+        font-size: 18px;
+        text-align: left;
+        transform: none;
+      }
 
-    .body--cv-test .site-nav {
-      position: static;
-      inset: auto;
-      padding: 0;
-      background: none;
-      flex-direction: row;
-      align-items: center;
-      gap: 36px;
-      transform: none;
-      flex: 0 0 auto;
-    }
+      .body--cv-fixed-layout .site-nav {
+        position: static;
+        inset: auto;
+        padding: 0;
+        background: none;
+        flex-direction: row;
+        align-items: center;
+        gap: 36px;
+        transform: none;
+        flex: 0 0 auto;
+      }
 
-    .body--cv-test .site-nav a {
-      border: 0;
-      padding: 0;
-      font-size: 12px;
+      .body--cv-fixed-layout .site-nav a {
+        border: 0;
+        padding: 0;
+        font-size: 12px;
+      }
     }
 
     .page--cv {
@@ -250,9 +256,184 @@
 
     .cv-media a { color: rgba(249, 249, 249, 0.65); text-underline-offset: 4px; }
 
+    @media (max-width: 899px) {
+      body.body--cv-fixed-layout {
+        overflow-x: hidden;
+      }
+
+      .page--cv {
+        width: 100%;
+        max-width: 100%;
+        padding: 88px clamp(10px, 2.6vw, 20px) 64px;
+      }
+
+      .page--cv .page-heading,
+      .cv-year-section {
+        width: 100%;
+      }
+
+      .page--cv .page__title {
+        margin-bottom: 34px;
+        font-size: 29px;
+      }
+
+      .cv-year-section + .cv-year-section {
+        margin-top: 48px;
+      }
+
+      .cv-year-section h2 {
+        margin-bottom: 12px;
+        font-size: 24px;
+      }
+
+      .cv-table-scroll {
+        width: calc(100% + 8px);
+        margin-inline: -4px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .cv-credit-table {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .cv-credit-table col.production { width: 28%; }
+      .cv-credit-table col.role { width: 33%; }
+      .cv-credit-table col.director { width: 19%; }
+      .cv-credit-table col.credit { width: 20%; }
+
+      .cv-year-section[aria-labelledby="year-2027"] .cv-credit-table col.production { width: 27%; }
+      .cv-year-section[aria-labelledby="year-2027"] .cv-credit-table col.role { width: 15%; }
+      .cv-year-section[aria-labelledby="year-2027"] .cv-credit-table col.director { width: 34%; }
+      .cv-year-section[aria-labelledby="year-2027"] .cv-credit-table col.credit { width: 24%; }
+
+      .cv-year-section[aria-labelledby="year-2026"] .cv-credit-table col.production { width: 27%; }
+      .cv-year-section[aria-labelledby="year-2026"] .cv-credit-table col.role { width: 16%; }
+      .cv-year-section[aria-labelledby="year-2026"] .cv-credit-table col.director { width: 32%; }
+      .cv-year-section[aria-labelledby="year-2026"] .cv-credit-table col.credit { width: 25%; }
+
+      .cv-year-section[aria-labelledby="year-2025"] .cv-credit-table col.production { width: 29%; }
+      .cv-year-section[aria-labelledby="year-2025"] .cv-credit-table col.role { width: 18%; }
+      .cv-year-section[aria-labelledby="year-2025"] .cv-credit-table col.director { width: 33%; }
+      .cv-year-section[aria-labelledby="year-2025"] .cv-credit-table col.credit { width: 20%; }
+
+      .cv-year-section[aria-labelledby="year-2024"] .cv-credit-table col.production { width: 22%; }
+      .cv-year-section[aria-labelledby="year-2024"] .cv-credit-table col.role { width: 32%; }
+      .cv-year-section[aria-labelledby="year-2024"] .cv-credit-table col.director { width: 26%; }
+      .cv-year-section[aria-labelledby="year-2024"] .cv-credit-table col.credit { width: 20%; }
+
+      .cv-year-section[aria-labelledby="year-2024"] .cv-credit-table tbody td:nth-child(2) {
+        font-size: clamp(8px, 2.7vw, 11px);
+      }
+
+      .cv-year-section[aria-labelledby="year-2024"] .cv-credit-title {
+        font-size: clamp(8px, 2.4vw, 10px);
+      }
+
+      .cv-year-section[aria-labelledby="year-2022"] .cv-credit-table col.production { width: 26%; }
+      .cv-year-section[aria-labelledby="year-2022"] .cv-credit-table col.role { width: 27%; }
+      .cv-year-section[aria-labelledby="year-2022"] .cv-credit-table col.director { width: 27%; }
+      .cv-year-section[aria-labelledby="year-2022"] .cv-credit-table col.credit { width: 20%; }
+
+      .cv-year-section[aria-labelledby="year-2019"] .cv-credit-table col.production { width: 25%; }
+      .cv-year-section[aria-labelledby="year-2019"] .cv-credit-table col.role { width: 28%; }
+      .cv-year-section[aria-labelledby="year-2019"] .cv-credit-table col.director { width: 27%; }
+      .cv-year-section[aria-labelledby="year-2019"] .cv-credit-table col.credit { width: 20%; }
+
+      .cv-year-section[aria-labelledby="year-2018"] .cv-credit-table col.production,
+      .cv-year-section[aria-labelledby="year-2017"] .cv-credit-table col.production,
+      .cv-year-section[aria-labelledby="year-2016"] .cv-credit-table col.production,
+      .cv-year-section[aria-labelledby="year-2015"] .cv-credit-table col.production,
+      .cv-year-section[aria-labelledby="year-2014"] .cv-credit-table col.production { width: 25%; }
+
+      .cv-year-section[aria-labelledby="year-2018"] .cv-credit-table col.role,
+      .cv-year-section[aria-labelledby="year-2017"] .cv-credit-table col.role,
+      .cv-year-section[aria-labelledby="year-2016"] .cv-credit-table col.role,
+      .cv-year-section[aria-labelledby="year-2015"] .cv-credit-table col.role,
+      .cv-year-section[aria-labelledby="year-2014"] .cv-credit-table col.role { width: 33%; }
+
+      .cv-year-section[aria-labelledby="year-2018"] .cv-credit-table col.director,
+      .cv-year-section[aria-labelledby="year-2017"] .cv-credit-table col.director,
+      .cv-year-section[aria-labelledby="year-2016"] .cv-credit-table col.director,
+      .cv-year-section[aria-labelledby="year-2015"] .cv-credit-table col.director,
+      .cv-year-section[aria-labelledby="year-2014"] .cv-credit-table col.director { width: 24%; }
+
+      .cv-year-section[aria-labelledby="year-2018"] .cv-credit-table col.credit,
+      .cv-year-section[aria-labelledby="year-2017"] .cv-credit-table col.credit,
+      .cv-year-section[aria-labelledby="year-2016"] .cv-credit-table col.credit,
+      .cv-year-section[aria-labelledby="year-2015"] .cv-credit-table col.credit,
+      .cv-year-section[aria-labelledby="year-2014"] .cv-credit-table col.credit { width: 18%; }
+
+      .cv-credit-table thead th,
+      .cv-credit-table tbody td {
+        padding-left: 2px;
+        padding-right: 2px;
+        text-align: center;
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+      }
+
+      .cv-credit-table thead th {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        font-size: clamp(7.5px, 2.2vw, 9.5px);
+        letter-spacing: 0.025em;
+      }
+
+      .cv-credit-table tbody td {
+        padding-top: 9px;
+        padding-bottom: 9px;
+        font-size: clamp(9px, 3.15vw, 13px);
+        line-height: 1.32;
+      }
+
+      .cv-credit-table tbody td:first-child {
+        text-align: center;
+      }
+
+      .cv-credit-title,
+      .cv-credit-table tbody td:last-child {
+        white-space: normal;
+      }
+
+      .cv-credit-title {
+        text-align: center;
+        font-size: clamp(8.5px, 2.7vw, 11.5px);
+        letter-spacing: 0.015em;
+      }
+
+      .cv-credit-title--compact {
+        font-size: clamp(8px, 2.45vw, 10px);
+        letter-spacing: 0;
+      }
+
+      .cv-credit-table tbody td:last-child .production-type {
+        font-size: clamp(9px, 2.9vw, 11.5px);
+      }
+
+      .cv-credit-table .award {
+        font-size: clamp(7px, 1.9vw, 8.5px);
+        line-height: 1.3;
+      }
+
+      @media (max-width: 319px) {
+        .cv-table-scroll { overflow-x: auto; }
+        .cv-credit-table { width: 520px; min-width: 520px; }
+      }
+
+      .cv-media {
+        margin-top: 48px;
+      }
+    }
+
   </style>
 </head>
-<body class="body--work-page body--cv-test">
+<body class="body--work-page body--cv-fixed-layout">
   <a class="skip-link" href="#main">Spring til indhold</a>
 
   <header class="site-header">
@@ -276,150 +457,172 @@
 
     <section class="cv-year-section" aria-labelledby="year-2027">
       <h2 id="year-2027">2027</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2027" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
           <tr><td><span class="cv-credit-title">Grævling</span></td><td>Nicolai</td><td>Jonas Hansen</td><td><span class="production-type">Kortfilm</span></td></tr>
           <tr><td><span class="cv-credit-title">Hjerteflimmer</span></td><td><span class="pending" title="Rolle afklares">-</span></td><td>Elvira Glahn / Feline Lyspiil</td><td><span class="production-type">Teater</span></td></tr>
           <tr><td><span class="cv-credit-title">Intimate</span></td><td><span class="pending" title="Rolle afklares">-</span></td><td>DOCKSA</td><td><span class="production-type">Teater</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2026">
       <h2 id="year-2026">2026</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2026" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
           <tr><td><span class="cv-credit-title">Glød</span></td><td>Lukas</td><td>Luis Kølkjær</td><td><span class="production-type">Kortfilm</span></td></tr>
           <tr><td><span class="cv-credit-title">Jakob og Angsten</span><span class="award">Vinder af publikumsprisen på Odense Film Festival</span></td><td>Angsten</td><td>Andreas Hentze Madsen</td><td><span class="production-type">Kortfilm</span></td></tr>
           <tr><td><span class="cv-credit-title">Mosemanden</span></td><td>Timm</td><td>Michael Erik Brink</td><td><span class="production-type">Kortfilm</span></td></tr>
           <tr><td><span class="cv-credit-title">Testicular cancer</span></td><td>Alex</td><td>Christopher Schnoor</td><td><span class="production-type">VR optagelse</span></td></tr>
           <tr><td><span class="cv-credit-title">Støj - Uge 12 mod vold</span></td><td>Mikkel</td><td>Vega Moltke-Leth</td><td><span class="production-type">Kampagnefilm</span></td></tr>
           <tr><td><span class="cv-credit-title">Glamping for voksne - Open Draft</span></td><td>Sigurd</td><td>Marcus Uhre</td><td><span class="production-type">Teater</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2025">
       <h2 id="year-2025">2025</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
-          <tr><td><span class="cv-credit-title">Sneboldeffekten - Toms Group</span></td><td>Kasper</td><td>Kristian Boysen</td><td><span class="production-type">Reklame</span></td></tr>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2025" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
+          <tr><td><span class="cv-credit-title cv-credit-title--compact">Sneboldeffekten - Toms Group</span></td><td>Kasper</td><td>Kristian Boysen</td><td><span class="production-type">Reklame</span></td></tr>
           <tr><td><span class="cv-credit-title">Ikea rummelige køkkener</span></td><td>Victor</td><td>Simon Bonde</td><td><span class="production-type">Reklame</span></td></tr>
           <tr><td><span class="cv-credit-title">ARLA</span></td><td>Ung mand</td><td>Anders Falck</td><td><span class="production-type">Reklame</span></td></tr>
           <tr><td><span class="cv-credit-title">Too good to go</span></td><td>Voiceover</td><td><span class="pending" title="Instruktør ikke fundet">-</span></td><td><span class="production-type">Voice over</span></td></tr>
           <tr><td><span class="cv-credit-title">Både og hverken enten eller</span></td><td>Bølle-Bob</td><td>Leopold af Rosenborg, Maimona Bruun</td><td><span class="production-type">Teater</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2024">
       <h2 id="year-2024">2024</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
-          <tr><td><span class="cv-credit-title">#Baremellemos</span></td><td>Robert</td><td>Peter Bjørklund Andersen</td><td><span class="production-type">Kortfilm</span></td></tr>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2024" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
+          <tr><td><span class="cv-credit-title cv-credit-title--compact">#Baremellemos</span></td><td>Robert</td><td>Peter Bjørklund Andersen</td><td><span class="production-type">Kortfilm</span></td></tr>
           <tr><td><span class="cv-credit-title">The Scent, Alkymist</span></td><td>Lead</td><td>Mikisog H. Lynge</td><td><span class="production-type">Musikvideo</span></td></tr>
           <tr><td><span class="cv-credit-title">Både og hverken enten eller</span></td><td>Bølle-Bob, Jobsamtaleadminstrator</td><td>Leopold af Rosenborg, Maimona Bruun</td><td><span class="production-type">Teater</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2022">
       <h2 id="year-2022">2022</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2022" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
           <tr><td><span class="cv-credit-title">Mod til at handle</span></td><td>Magnus</td><td>Emil Dam Seidel</td><td><span class="production-type">Kortfilm</span></td></tr>
           <tr><td><span class="cv-credit-title">ALTIBOX</span></td><td>Norsk søn</td><td>Tomas Villum</td><td><span class="production-type">Reklame</span></td></tr>
-          <tr><td><span class="cv-credit-title">Rapunzel Musical</span></td><td>Feri</td><td>Bo Skødebjerg</td><td><span class="production-type">Musical</span></td></tr>
-          <tr><td><span class="cv-credit-title">Nissen uden navn Musical</span></td><td>Oldtrold</td><td>Bo Skødebjerg</td><td><span class="production-type">Musical</span></td></tr>
-        </tbody>
-      </table>
+          <tr><td><span class="cv-credit-title">Rapunzel</span></td><td>Feri</td><td>Bo Skødebjerg</td><td><span class="production-type">Musical</span></td></tr>
+          <tr><td><span class="cv-credit-title">Nissen uden navn</span></td><td>Oldtrold</td><td>Bo Skødebjerg</td><td><span class="production-type">Musical</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2019">
       <h2 id="year-2019">2019</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody><tr><td><span class="cv-credit-title">Napoli</span></td><td>Trommeslageren</td><td>Nikolaj Hübbe / Sorella Englund</td><td><span class="production-type">Ballet</span></td></tr></tbody>
-      </table>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2019" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody><tr><td><span class="cv-credit-title">Napoli</span></td><td>Trommeslageren</td><td>Nikolaj Hübbe / Sorella Englund</td><td><span class="production-type">Ballet</span></td></tr></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2018">
       <h2 id="year-2018">2018</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2018" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
           <tr><td><span class="cv-credit-title">Alice i Eventyrland</span></td><td>Additional Dancers</td><td>Christopher Wheeldon</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Kom bamse nu balletter vi</span></td><td>Askedreng</td><td>Thomas Lund / Katrine Hauch-Fausbøll</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Napoli</span></td><td>Trommeslageren</td><td>Nikolaj Hübbe / Sorella Englund</td><td><span class="production-type">Ballet</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2017">
       <h2 id="year-2017">2017</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2017" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
           <tr><td><span class="cv-credit-title">Svanesøen</span></td><td>Additional Dancers</td><td>Nikolaj Hübbe / Silja Schandorff</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Raymonda</span></td><td>Additional Dancers</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
-          <tr><td><span class="cv-credit-title">Nøddeknækkeren</span></td><td>Gæstebarn, Soldat, Polichinelle</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
+          <tr><td><span class="cv-credit-title cv-credit-title--compact">Nøddeknækkeren</span></td><td>Gæstebarn, Soldat, Polichinelle</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">De glemte børn</span></td><td>Spøgelsesbarn</td><td>Gregory Dean</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Romeo og Julie</span></td><td>Gadedreng</td><td><span class="pending" title="Instruktør ikke fundet">-</span></td><td><span class="production-type">Ballet</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2016">
       <h2 id="year-2016">2016</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2016" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
           <tr><td><span class="cv-credit-title">Alice i Eventyrland</span></td><td>Hedgehog</td><td>Christopher Wheeldon</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Fabelmageren</span></td><td>Kødædende Plante</td><td>Shane Brox / Esther Lee Wilkinson</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Svanesøen</span></td><td>Additional Dancers</td><td>Nikolaj Hübbe / Silja Schandorff</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Sylfiden</span></td><td>Reel barn</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2015">
       <h2 id="year-2015">2015</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
-          <tr><td><span class="cv-credit-title">Nøddeknækkeren</span></td><td>Gæstebarn, Soldat, Polichinelle</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2015" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
+          <tr><td><span class="cv-credit-title cv-credit-title--compact">Nøddeknækkeren</span></td><td>Gæstebarn, Soldat, Polichinelle</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Svanesøen</span></td><td>Additional Dancers</td><td>Nikolaj Hübbe / Silja Schandorff</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Fabelmageren</span></td><td>Pølsemanden</td><td>Shane Brox / Esther Lee Wilkinson</td><td><span class="production-type">Ballet</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="cv-year-section" aria-labelledby="year-2014">
       <h2 id="year-2014">2014</h2>
-      <table class="cv-credit-table">
-        <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
-        <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-        <tbody>
-          <tr><td><span class="cv-credit-title">Nøddeknækkeren</span></td><td>Gæstebarn, Soldat, Polichinelle</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
+      <div class="cv-table-scroll" role="region" aria-label="CV-oversigt for 2014" tabindex="0">
+        <table class="cv-credit-table">
+          <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
+          <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
+          <tbody>
+          <tr><td><span class="cv-credit-title cv-credit-title--compact">Nøddeknækkeren</span></td><td>Gæstebarn, Soldat, Polichinelle</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Kom bamse nu balletter vi</span></td><td>Askedreng</td><td>Thomas Lund / Katrine Hauch-Fausbøll</td><td><span class="production-type">Ballet</span></td></tr>
           <tr><td><span class="cv-credit-title">Et folkesagn</span></td><td>Additional Dancers</td><td>Nikolaj Hübbe</td><td><span class="production-type">Ballet</span></td></tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <nav class="cv-media" aria-label="Reel og stemmeprøve">
