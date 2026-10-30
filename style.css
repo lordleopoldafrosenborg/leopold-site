@@ -1537,7 +1537,6 @@ body.nav-open {
 
 .about-details__cell--education {
   grid-area: education;
-  border-bottom: 1px solid rgba(249, 249, 249, 0.16);
   border-left: 1px solid rgba(249, 249, 249, 0.16);
 }
 
@@ -1582,6 +1581,14 @@ body.nav-open {
   .about-details__cell {
     padding: var(--about-gap) 26.4px;
   }
+}
+
+.about-details__cell--education .about-details__cell-content {
+  transform: translateY(9px);
+}
+
+.about-details__cell--workshops .about-details__cell-content {
+  transform: translateY(-9px);
 }
 
 @media (max-width: 759px) {
