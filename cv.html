@@ -333,6 +333,11 @@
         font-size: clamp(8px, 2.4vw, 10px);
       }
 
+      .cv-year-section[aria-labelledby="year-2024"] .cv-credit-title--compact {
+        font-size: clamp(8px, 2.2vw, 9.5px);
+        letter-spacing: 0;
+      }
+
       .cv-year-section[aria-labelledby="year-2022"] .cv-credit-table col.production { width: 26%; }
       .cv-year-section[aria-labelledby="year-2022"] .cv-credit-table col.role { width: 27%; }
       .cv-year-section[aria-labelledby="year-2022"] .cv-credit-table col.director { width: 27%; }
@@ -369,8 +374,8 @@
 
       .cv-credit-table thead th,
       .cv-credit-table tbody td {
-        padding-left: 2px;
-        padding-right: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
         text-align: center;
         white-space: normal;
         overflow-wrap: normal;
@@ -408,8 +413,12 @@
       }
 
       .cv-credit-title--compact {
-        font-size: clamp(8px, 2.45vw, 10px);
+        font-size: clamp(8px, 2.2vw, 9.5px);
         letter-spacing: 0;
+      }
+
+      .cv-credit-table .cv-cell--tight {
+        font-size: clamp(8px, 2.8vw, 11.5px);
       }
 
       .cv-credit-table tbody td:last-child .production-type {
@@ -463,7 +472,7 @@
           <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
           <tbody>
           <tr><td><span class="cv-credit-title">Grævling</span></td><td>Nicolai</td><td>Jonas Hansen</td><td><span class="production-type">Kortfilm</span></td></tr>
-          <tr><td><span class="cv-credit-title">Hjerteflimmer</span></td><td><span class="pending" title="Rolle afklares">-</span></td><td>Elvira Glahn / Feline Lyspiil</td><td><span class="production-type">Teater</span></td></tr>
+          <tr><td><span class="cv-credit-title cv-credit-title--compact">Hjerteflimmer</span></td><td><span class="pending" title="Rolle afklares">-</span></td><td>Elvira Glahn / Feline Lyspiil</td><td><span class="production-type">Teater</span></td></tr>
           <tr><td><span class="cv-credit-title">Intimate</span></td><td><span class="pending" title="Rolle afklares">-</span></td><td>DOCKSA</td><td><span class="production-type">Teater</span></td></tr>
           </tbody>
         </table>
@@ -514,7 +523,7 @@
           <tbody>
           <tr><td><span class="cv-credit-title cv-credit-title--compact">#Baremellemos</span></td><td>Robert</td><td>Peter Bjørklund Andersen</td><td><span class="production-type">Kortfilm</span></td></tr>
           <tr><td><span class="cv-credit-title">The Scent, Alkymist</span></td><td>Lead</td><td>Mikisog H. Lynge</td><td><span class="production-type">Musikvideo</span></td></tr>
-          <tr><td><span class="cv-credit-title">Både og hverken enten eller</span></td><td>Bølle-Bob, Jobsamtaleadminstrator</td><td>Leopold af Rosenborg, Maimona Bruun</td><td><span class="production-type">Teater</span></td></tr>
+          <tr><td><span class="cv-credit-title">Både og hverken enten eller</span></td><td class="cv-cell--tight">Bølle-Bob, Jobsamtaleadminstrator</td><td>Leopold af Rosenborg, Maimona Bruun</td><td><span class="production-type">Teater</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -542,7 +551,7 @@
         <table class="cv-credit-table">
           <colgroup><col class="production"><col class="role"><col class="director"><col class="credit"></colgroup>
           <thead><tr><th scope="col">Titel</th><th scope="col">Rolle</th><th scope="col">Instruktør</th><th scope="col">Format</th></tr></thead>
-          <tbody><tr><td><span class="cv-credit-title">Napoli</span></td><td>Trommeslageren</td><td>Nikolaj Hübbe / Sorella Englund</td><td><span class="production-type">Ballet</span></td></tr></tbody>
+          <tbody><tr><td><span class="cv-credit-title">Napoli</span></td><td class="cv-cell--tight">Trommeslageren</td><td>Nikolaj Hübbe / Sorella Englund</td><td><span class="production-type">Ballet</span></td></tr></tbody>
         </table>
       </div>
     </section>
