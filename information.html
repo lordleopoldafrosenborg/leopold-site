@@ -62,7 +62,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Lora:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=69">
+  <link rel="stylesheet" href="style.css?v=88">
 </head>
 <body class="body--work-page">
   <a class="skip-link" href="#main">Spring til indhold</a>
@@ -75,14 +75,14 @@
     <a class="site-header__brand" href="index.html">Leopold af Rosenborg</a>
     <nav class="site-nav" id="site-nav" data-site-nav aria-label="Primær">
       <a href="index.html">Forside</a>
-      <a href="arbejde.html">Arbejde</a>
       <a href="information.html" aria-current="page">Om</a>
+      <a href="cv.html">CV</a>
       <a href="kontakt.html">Kontakt</a>
     </nav>
   </header>
 
   <main id="main" class="page page--information">
-    <section class="about-intro" data-fade aria-labelledby="about-heading">
+    <section class="about-intro" aria-labelledby="about-heading">
       <h1 class="about-intro__title" id="about-heading">Om</h1>
       <div class="about-intro__body">
         <p class="about-intro__lead"><strong>Leopold af Rosenborg er en dansk skuespiller bosat i København.</strong></p>
@@ -91,26 +91,49 @@
       </div>
     </section>
 
-    <section class="info-panel" data-fade aria-label="Billeder">
-      <figure class="info-sheet">
-        <img
-          src="images/ny%20info.jpg"
-          alt="Oplysninger om Leopold af Rosenborg: mål, alder, sprog og færdigheder."
-          loading="lazy"
-          decoding="async"
-        >
-      </figure>
-    </section>
-
-    <section class="info-education info-education--sheet" data-fade>
-      <figure class="info-sheet">
-        <img
-          src="images/lært.jpg"
-          alt="Oversigt med oplysninger om Leopold af Rosenborgs erfaring og uddannelse."
-          loading="lazy"
-          decoding="async"
-        >
-      </figure>
+    <section class="about-details" aria-labelledby="about-details-title">
+      <div class="about-details__columns">
+        <div class="about-details__cell about-details__cell--facts">
+          <div class="about-details__cell-content">
+            <p class="about-details__facts">Alder: 21 år<br>Spillealder: 16-24 år<br>Højde: 180 cm</p>
+          </div>
+        </div>
+        <div class="about-details__cell about-details__cell--education">
+          <div class="about-details__cell-content">
+            <h2 class="about-details__title" id="about-details-title">Uddannelse og workshops</h2>
+            <ul class="about-details__list" aria-label="Uddannelse">
+              <li>Det Kongelige Teaters Balletskole, 2011-2019</li>
+              <li>Sankt Annæ Gymnasium, STX, Drama A og Musik A</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-details__cell about-details__cell--skills">
+          <div class="about-details__cell-content">
+            <h3 class="about-details__subheading">Færdigheder</h3>
+            <ul class="about-details__list about-details__list--skills" aria-label="Færdigheder">
+              <li>Dans og ballet</li>
+              <li>Improvisation</li>
+              <li>Sang</li>
+              <li>Klaver</li>
+              <li>Tryllekunst</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-details__cell about-details__cell--workshops">
+          <div class="about-details__cell-content">
+            <ul class="about-details__list" aria-label="Workshops og undervisning">
+              <li>Meisner Workshop, Marc Harpsøe</li>
+              <li>Acting Workshop, Thure Lindhardt</li>
+              <li>Skuespilundervisning, Therese Glahn</li>
+              <li>Skuespilforløb, Mette Frank</li>
+              <li>Corporeal Mime-forløb, EIMCD, Paris</li>
+              <li>Roy Hart Workshop, Pan Theater, Paris</li>
+              <li>Dukkeførerworkshop, Rolf Søborg Hansen</li>
+              <li>Stemme- og sangundervisning, Camilla Tiedt Frith</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 

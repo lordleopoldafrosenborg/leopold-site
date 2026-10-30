@@ -1221,22 +1221,24 @@ body.nav-open {
 
 /* Information */
 .page--information {
+  --about-content-width: 880px;
+  --about-gap: 26.4px;
   max-width: min(1200px, 100%);
-  padding-left: clamp(16px, 4vw, 40px);
-  padding-right: clamp(16px, 4vw, 40px);
-  padding-top: clamp(84px, 10.5vw, 94px);
+  padding-left: clamp(17.6px, 4.4vw, 44px);
+  padding-right: clamp(17.6px, 4.4vw, 44px);
+  padding-top: clamp(92.4px, 11.55vw, 103.4px);
 }
 
 .page--information .about-intro {
-  max-width: min(1080px, 100%);
+  max-width: min(var(--about-content-width), 100%);
   margin-inline: auto;
-  padding: 0 0 clamp(40px, 6vw, 60px);
+  padding: 0;
 }
 
 .about-intro__title {
-  max-width: 78ch;
-  margin: 0 auto clamp(28px, 4vw, 40px);
-  padding-bottom: 0.65rem;
+  max-width: 100%;
+  margin: 0 auto var(--about-gap);
+  padding-bottom: 0.715rem;
   border-bottom: 1px solid var(--line);
   text-align: left;
   font-family: var(--font-serif);
@@ -1248,13 +1250,13 @@ body.nav-open {
 }
 
 .about-intro__body {
-  max-width: 78ch;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   font-family: var(--font-serif);
   font-size: clamp(16px, 1.4vw, 18px);
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.925;
   color: rgba(249, 249, 249, 0.82);
 }
 
@@ -1263,7 +1265,7 @@ body.nav-open {
 }
 
 .about-intro__body p + p {
-  margin-top: 1.1em;
+  margin-top: 1.21em;
 }
 
 .about-intro__lead {
@@ -1285,6 +1287,15 @@ body.nav-open {
 
 .about-intro__membership-line {
   white-space: nowrap;
+}
+
+.about-intro__membership-line::after {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: var(--about-gap) auto 0;
+  background: var(--line);
+  content: "";
 }
 
 @media (max-width: 559px) {
@@ -1464,6 +1475,146 @@ body.nav-open {
 
 .info-education__list li {
   padding: 4px 0;
+}
+
+.about-details {
+  max-width: min(var(--about-content-width), 100%);
+  margin: 0 auto;
+  padding: 0 0 clamp(39.6px, 6.6vw, 66px);
+  color: rgba(249, 249, 249, 0.82);
+  text-align: center;
+}
+
+.about-details__title {
+  width: 100%;
+  margin: 0 0 var(--about-gap);
+  padding-bottom: 0.715rem;
+  border-bottom: 1px solid var(--line);
+  color: rgba(249, 249, 249, 0.92);
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.32;
+}
+
+.about-details__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "facts education"
+    "skills workshops";
+}
+
+.about-details__cell {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--about-gap) 8px;
+  text-align: center;
+}
+
+.about-details__cell-content {
+  width: 100%;
+  min-width: 0;
+  margin-block: auto;
+}
+
+.about-details__cell--facts {
+  grid-area: facts;
+  border-bottom: 1px solid rgba(249, 249, 249, 0.16);
+}
+
+.about-details__cell--skills {
+  grid-area: skills;
+  justify-content: flex-start;
+}
+
+.about-details__cell--skills .about-details__cell-content {
+  margin-block: 0;
+}
+
+.about-details__cell--education {
+  grid-area: education;
+  border-bottom: 1px solid rgba(249, 249, 249, 0.16);
+  border-left: 1px solid rgba(249, 249, 249, 0.16);
+}
+
+.about-details__cell--workshops {
+  grid-area: workshops;
+  border-left: 1px solid rgba(249, 249, 249, 0.16);
+}
+
+.about-details__facts {
+  margin: 0;
+  color: rgba(249, 249, 249, 0.82);
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.4vw, 24px);
+  line-height: 1.5;
+}
+
+.about-details__subheading {
+  margin: 0 0 19.8px;
+  color: rgba(249, 249, 249, 0.9);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.32;
+}
+
+.about-details__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(249, 249, 249, 0.82);
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.98;
+}
+
+.about-details__list--skills {
+  font-size: 18px;
+  line-height: 1.87;
+}
+
+@media (min-width: 760px) {
+  .about-details__cell {
+    padding: var(--about-gap) 26.4px;
+  }
+}
+
+@media (max-width: 759px) {
+  .about-details__cell {
+    padding-inline: clamp(5.5px, 2.2vw, 13.2px);
+  }
+
+  .about-details__facts {
+    font-size: clamp(13px, 3.4vw, 16px);
+    line-height: 1.595;
+  }
+
+  .about-details__title {
+    margin-bottom: 13.2px;
+    font-size: clamp(13px, 3.6vw, 17px);
+    line-height: 1.32;
+  }
+
+  .about-details__subheading {
+    margin-bottom: 15.4px;
+    font-size: clamp(14px, 3.8vw, 18px);
+    line-height: 1.32;
+  }
+
+  .about-details__list {
+    font-size: clamp(11px, 3vw, 13px);
+    line-height: 1.705;
+  }
+
+  .about-details__list--skills {
+    font-size: clamp(13px, 3.5vw, 15px);
+    line-height: 1.705;
+  }
 }
 
 /* Kontakt */
