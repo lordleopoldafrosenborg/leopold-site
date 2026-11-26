@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#131211">
-  <link rel="stylesheet" href="style.css?v=70">
+  <link rel="stylesheet" href="style.css?v=75">
   <title>CV - Leopold af Rosenborg | Dansk skuespiller</title>
   <meta name="description" content="Se CV'et for den danske skuespiller Leopold af Rosenborg med roller fra teater, film, tv, reklame, kortfilm, musikvideoer og ballet.">
   <link rel="canonical" href="https://leopoldafrosenborg.dk/cv.html">
@@ -132,8 +132,9 @@
         margin-bottom: calc(clamp(6px, 1.2vw, 10px) * var(--cv-ui-scale));
         font-size: calc(clamp(14px, 1.35vw, 16px) * var(--cv-ui-scale));
       }
-      .body--cv-fixed-layout .site-footer__meta { max-width: calc(38rem * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__meta { max-width: calc(var(--max) * var(--cv-ui-scale)); }
       .body--cv-fixed-layout .site-footer__footline { gap: calc(6px * var(--cv-ui-scale)) calc(14px * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__social { gap: calc(4px * var(--cv-ui-scale)); }
       .body--cv-fixed-layout .site-footer__email { font-size: calc(10.5px * var(--cv-ui-scale)); }
       .body--cv-fixed-layout .site-footer__email a { border-bottom-width: calc(1px * var(--cv-ui-scale)); }
       .body--cv-fixed-layout .site-footer__icon-link {
@@ -144,8 +145,24 @@
         width: calc(14px * var(--cv-ui-scale));
         height: calc(14px * var(--cv-ui-scale));
       }
-      .body--cv-fixed-layout .site-footer__icon-link--imdb { padding-inline: calc(1px * var(--cv-ui-scale)); }
-      .body--cv-fixed-layout .site-footer__icon-link--imdb svg { height: calc(10px * var(--cv-ui-scale)); }
+      .body--cv-fixed-layout .site-footer__membership-link {
+        gap: calc(4px * var(--cv-ui-scale));
+        min-height: calc(26px * var(--cv-ui-scale));
+        margin-left: calc(4px * var(--cv-ui-scale));
+        font-size: calc(9px * var(--cv-ui-scale));
+      }
+      .body--cv-fixed-layout .site-footer__membership-link img {
+        width: calc(20px * var(--cv-ui-scale));
+        height: calc(20px * var(--cv-ui-scale));
+      }
+      .body--cv-fixed-layout .site-footer__icon-link--imdb {
+        padding-inline: calc(4px * var(--cv-ui-scale));
+        transform: none;
+      }
+      .body--cv-fixed-layout .site-footer__icon-link--imdb svg {
+        width: calc(24px * var(--cv-ui-scale));
+        height: calc(12px * var(--cv-ui-scale));
+      }
     }
 
     .page--cv {
@@ -699,12 +716,13 @@
             </li>
             <li>
               <a class="site-footer__icon-link site-footer__icon-link--imdb" href="https://www.imdb.com/name/nm16844776/" rel="noopener noreferrer" target="_blank" aria-label="IMDb">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 12" fill="currentColor" aria-hidden="true"><text x="0" y="9.5" fill="currentColor" font-size="8.5" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" letter-spacing="0.02em">IMDb</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" fill="currentColor" aria-hidden="true"><text x="0" y="9.5" textLength="24" lengthAdjust="spacingAndGlyphs" fill="currentColor" font-size="8.5" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" letter-spacing="0.02em">IMDb</text></svg>
               </a>
             </li>
             <li>
-              <a class="site-footer__icon-link" href="https://www.linkedin.com/in/leopold-af-rosenborg-3b47512b6/" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/></svg>
+              <a class="site-footer__membership-link" href="https://skuespillerhaandbogen.dk/medlem/leopold-af-rosenborg" rel="noopener noreferrer" target="_blank" aria-label="Medlem af Skuespillerforbundet - se profil i Skuespillerhåndbogen">
+                <img src="images/logo-black.png" alt="" width="20" height="20">
+                <span>Medlem af Skuespillerforbundet</span>
               </a>
             </li>
           </ul>
