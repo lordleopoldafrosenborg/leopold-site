@@ -1610,6 +1610,11 @@ body.nav-open {
   transform: translateY(-9px);
 }
 
+.page--information .about-details__cell--education .about-details__list,
+.page--information .about-details__cell--workshops .about-details__list {
+  font-size: clamp(5.5px, 1.4vw, 13.5px);
+}
+
 @media (max-width: 759px) {
   .about-details__cell {
     padding-inline: clamp(5.5px, 2.2vw, 13.2px);
@@ -1731,8 +1736,16 @@ body.nav-open {
   max-width: 100%;
 }
 
-.site-footer__name {
+.site-footer__identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px clamp(12px, 2vw, 20px);
   margin: 0 0 clamp(6px, 1.2vw, 10px);
+}
+
+.site-footer__name {
+  margin: 0;
   font-family: var(--font-serif);
   font-size: clamp(14px, 1.35vw, 16px);
   font-weight: 400;
@@ -1819,8 +1832,8 @@ body.nav-open {
   justify-content: flex-end;
   gap: 4px;
   min-height: 26px;
-  margin-left: 4px;
-  color: rgba(249, 249, 249, 0.4);
+  margin-left: 0;
+  color: rgba(249, 249, 249, 0.52);
   font-family: var(--font-sans);
   font-size: 9px;
   line-height: 1.3;
@@ -1842,7 +1855,7 @@ body.nav-open {
   flex-shrink: 0;
   object-fit: contain;
   filter: brightness(0) invert(1);
-  opacity: 0.3;
+  opacity: 0.46;
   transition: opacity 240ms var(--ease);
 }
 
